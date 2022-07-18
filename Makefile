@@ -10,3 +10,12 @@ docker-down:
 
 docker-down-clear:
 	docker-compose down -v --remove-orphans
+
+set:
+	echo "Enter the key" && read key && \
+	echo "Enter the value" && read value && \
+	docker-compose exec redis redis-cli set $$key $$value
+
+get:
+	echo "Enter the key" && read key && \
+	docker-compose exec redis redis-cli get $$key
