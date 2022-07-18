@@ -12,9 +12,9 @@ docker-down-clear:
 	docker-compose down -v --remove-orphans
 
 set:
-	@echo "Enter the key" && read key && \
-	echo "Enter the ttl" && read ttl && \
-	echo "Enter the value" && read value && \
+	@read -p "Enter the key: " key && \
+	read -p "Enter the ttl (optional): " ttl && \
+	read -p "Enter the value: " value && \
 	if [ $$ttl > 0 ]; then \
 	  docker-compose exec redis redis-cli setex $$key $$ttl $$value; \
 	else \
@@ -22,35 +22,35 @@ set:
 	fi
 
 get:
-	echo "Enter the key" && read key && \
+	read -p "Enter the key: " key && \
 	docker-compose exec redis redis-cli get $$key
 
 del:
-	echo "Enter the key" && read key && \
+	read -p  "Enter the key: " key && \
 	docker-compose exec redis redis-cli del $$key
 
 exists:
-	echo "Enter the key" && read key && \
+	read -p "Enter the key: " key && \
 	docker-compose exec redis redis-cli exists $$key
 
 flush:
 	docker-compose exec redis redis-cli flushall
 
 expire:
-	echo "Enter the key" && read key && \
-	echo "Enter the ttl" && read ttl && \
+	read -p "Enter the key: " key && \
+	read -p "Enter the ttl: " ttl && \
 	docker-compose exec redis redis-cli expire $$key $$ttl
 
 ttl:
-	echo "Enter the key" && read key && \
+	read -p "Enter the key: " key && \
 	docker-compose exec redis redis-cli ttl $$key
 
 # List
 
 add:
-	@echo "Enter the key" && read key && \
-	echo "Enter the value" && read value && \
-	echo "Enter l/r for the direction, right by default" && read direction && \
+	@read -p "Enter the key: " key && \
+	read -p "Enter the value: " value && \
+	read -p "Enter l/r for the direction, right by default: " direction && \
 	if [ $$direction = "l" ]; then \
 	  docker-compose exec redis redis-cli lpush $$key $$value; \
 	else \
@@ -58,5 +58,5 @@ add:
 	fi
 
 read:
-	echo "Enter the key" && read key && \
+	read -p "Enter the key: " key && \
 	docker-compose exec redis redis-cli lrange $$key 0 -1
