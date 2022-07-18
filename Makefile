@@ -19,3 +19,7 @@ set:
 get:
 	echo "Enter the key" && read key && \
 	docker-compose exec redis redis-cli get $$key
+
+del:
+	echo "Enter the key" && read key && \
+	docker-compose exec redis redis-cli del $$key
