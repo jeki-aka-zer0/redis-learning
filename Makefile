@@ -30,3 +30,9 @@ exists:
 
 flush:
 	docker-compose exec redis redis-cli flushall
+
+expire:
+	echo "Enter the key" && read key && \
+	echo "Enter the ttl" && read ttl && \
+	docker-compose exec redis redis-cli expire $$key $$ttl
+
