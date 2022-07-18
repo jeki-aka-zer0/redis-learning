@@ -51,3 +51,7 @@ push:
 	echo "Enter the key" && read key && \
 	echo "Enter the value" && read value && \
 	docker-compose exec redis redis-cli lpush $$key $$value
+
+read:
+	echo "Enter the key" && read key && \
+	docker-compose exec redis redis-cli lrange $$key 0 -1
