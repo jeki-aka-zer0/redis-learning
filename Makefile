@@ -12,9 +12,14 @@ docker-down-clear:
 	docker-compose down -v --remove-orphans
 
 set:
-	echo "Enter the key" && read key && \
+	@echo "Enter the key" && read key && \
+	echo "Enter the ttl" && read ttl && \
 	echo "Enter the value" && read value && \
-	docker-compose exec redis redis-cli set $$key $$value
+	if [ $$ttl > 0 ]; then \
+	  docker-compose exec redis redis-cli setex $$key $$ttl $$value; \
+	else \
+	  docker-compose exec redis redis-cli set $$key $$value; \
+	fi
 
 get:
 	echo "Enter the key" && read key && \
@@ -39,9 +44,3 @@ expire:
 ttl:
 	echo "Enter the key" && read key && \
 	docker-compose exec redis redis-cli ttl $$key
-
-setex:
-	echo "Enter the key" && read key && \
-	echo "Enter the ttl" && read ttl && \
-	echo "Enter the value" && read value && \
-	docker-compose exec redis redis-cli setex $$key $$ttl $$value
