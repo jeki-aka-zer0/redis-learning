@@ -47,10 +47,15 @@ ttl:
 
 # List
 
-push:
-	echo "Enter the key" && read key && \
+add:
+	@echo "Enter the key" && read key && \
 	echo "Enter the value" && read value && \
-	docker-compose exec redis redis-cli lpush $$key $$value
+	echo "Enter l/r for the direction, right by default" && read direction && \
+	if [ $$direction = "l" ]; then \
+	  docker-compose exec redis redis-cli lpush $$key $$value; \
+	else \
+	  docker-compose exec redis redis-cli rpush $$key $$value; \
+	fi
 
 read:
 	echo "Enter the key" && read key && \
