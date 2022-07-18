@@ -27,3 +27,6 @@ del:
 exists:
 	echo "Enter the key" && read key && \
 	docker-compose exec redis redis-cli exists $$key
+
+flush:
+	docker-compose exec redis redis-cli flushall
