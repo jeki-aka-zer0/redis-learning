@@ -44,3 +44,10 @@ expire:
 ttl:
 	echo "Enter the key" && read key && \
 	docker-compose exec redis redis-cli ttl $$key
+
+# List
+
+push:
+	echo "Enter the key" && read key && \
+	echo "Enter the value" && read value && \
+	docker-compose exec redis redis-cli lpush $$key $$value
