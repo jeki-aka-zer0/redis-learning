@@ -36,3 +36,6 @@ expire:
 	echo "Enter the ttl" && read ttl && \
 	docker-compose exec redis redis-cli expire $$key $$ttl
 
+ttl:
+	echo "Enter the key" && read key && \
+	docker-compose exec redis redis-cli ttl $$key
