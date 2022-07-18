@@ -23,3 +23,7 @@ get:
 del:
 	echo "Enter the key" && read key && \
 	docker-compose exec redis redis-cli del $$key
+
+exists:
+	echo "Enter the key" && read key && \
+	docker-compose exec redis redis-cli exists $$key
