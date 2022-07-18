@@ -39,3 +39,9 @@ expire:
 ttl:
 	echo "Enter the key" && read key && \
 	docker-compose exec redis redis-cli ttl $$key
+
+setex:
+	echo "Enter the key" && read key && \
+	echo "Enter the ttl" && read ttl && \
+	echo "Enter the value" && read value && \
+	docker-compose exec redis redis-cli setex $$key $$ttl $$value
