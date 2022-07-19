@@ -80,3 +80,8 @@ s-add:
 s-read:
 	read -p "Enter the key: " key && \
   	docker-compose exec redis redis-cli smembers $$key;
+
+s-del:
+	read -p "Enter the key: " key && \
+	read -p "Enter the value: " value && \
+  	docker-compose exec redis redis-cli srem $$key $$value;
