@@ -112,6 +112,11 @@ z-rank:
 	read -p "Enter the member: " member && \
 	docker-compose exec redis redis-cli zrank $$key $$member;
 
+z-score:
+	read -p "Enter the key: " key && \
+	read -p "Enter the member: " member && \
+	docker-compose exec redis redis-cli zscore $$key $$member;
+
 # Hash
 
 h-add:
