@@ -60,3 +60,12 @@ add:
 read:
 	read -p "Enter the key: " key && \
 	docker-compose exec redis redis-cli lrange $$key 0 -1
+
+pop:
+	@read -p "Enter the key: " key && \
+	read -p "Enter l/r for the direction, right by default: " direction && \
+	if [ $$direction = "l" ]; then \
+	  docker-compose exec redis redis-cli lpop $$key; \
+	else \
+	  docker-compose exec redis redis-cli rpop $$key; \
+	fi
