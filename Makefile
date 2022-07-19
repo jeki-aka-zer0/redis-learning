@@ -95,6 +95,12 @@ s-del:
 	read -p "Enter the value: " value && \
   	docker-compose exec redis redis-cli srem $$key $$value;
 
+z-add:
+	read -p "Enter the key: " key && \
+	read -p "Enter the score: " score && \
+	read -p "Enter the member: " member && \
+	docker-compose exec redis redis-cli zadd $$key $$score $$member;
+
 # Hash
 
 h-add:
