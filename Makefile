@@ -117,6 +117,10 @@ z-score:
 	read -p "Enter the member: " member && \
 	docker-compose exec redis redis-cli zscore $$key $$member;
 
+z-read:
+	read -p "Enter the key: " key && \
+	docker-compose exec redis redis-cli zrange $$key 0 1 WITHSCORES;
+
 # Hash
 
 h-add:
