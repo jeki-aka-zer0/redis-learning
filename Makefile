@@ -47,7 +47,7 @@ ttl:
 
 # List
 
-add:
+l-add:
 	@read -p "Enter the key: " key && \
 	read -p "Enter the value: " value && \
 	read -p "Enter l/r for the direction, right by default: " direction && \
@@ -57,11 +57,11 @@ add:
 	  docker-compose exec redis redis-cli rpush $$key $$value; \
 	fi
 
-read:
+l-read:
 	read -p "Enter the key: " key && \
 	docker-compose exec redis redis-cli lrange $$key 0 -1
 
-pop:
+l-pop:
 	@read -p "Enter the key: " key && \
 	read -p "Enter l/r for the direction, right by default: " direction && \
 	if [ $$direction = "l" ]; then \
@@ -70,3 +70,13 @@ pop:
 	  docker-compose exec redis redis-cli rpop $$key; \
 	fi
 
+# Set
+
+s-add:
+	read -p "Enter the key: " key && \
+	read -p "Enter the value: " value && \
+  	docker-compose exec redis redis-cli sadd $$key $$value;
+
+s-read:
+	read -p "Enter the key: " key && \
+  	docker-compose exec redis redis-cli smembers $$key;
