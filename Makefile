@@ -21,6 +21,15 @@ set:
 	  docker-compose exec redis redis-cli set $$key $$value; \
 	fi
 
+incr:
+	@read -p "Enter the key: " key && \
+	read -p "Enter the increment (optional): " increment && \
+	if [ $$increment > 0 ]; then \
+	  docker-compose exec redis redis-cli incrby $$key $$increment; \
+	else \
+	  docker-compose exec redis redis-cli incr $$key; \
+	fi
+
 get:
 	read -p "Enter the key: " key && \
 	docker-compose exec redis redis-cli get $$key
