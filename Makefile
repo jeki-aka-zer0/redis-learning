@@ -96,4 +96,9 @@ h-add:
 
 h-read:
 	read -p "Enter the key: " key && \
-  	docker-compose exec redis redis-cli hgetall $$key;
+	read -p "Enter the field (optional): " field && \
+	if [ $$field ]; then \
+	  docker-compose exec redis redis-cli hget $$key $$field; \
+	else \
+	  docker-compose exec redis redis-cli hgetall $$key; \
+	fi
