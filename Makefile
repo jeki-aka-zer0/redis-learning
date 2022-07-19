@@ -102,3 +102,8 @@ h-read:
 	else \
 	  docker-compose exec redis redis-cli hgetall $$key; \
 	fi
+
+h-del:
+	read -p "Enter the key: " key && \
+	read -p "Enter the field: " field && \
+	docker-compose exec redis redis-cli hdel $$key $$field;
