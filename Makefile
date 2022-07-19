@@ -85,3 +85,15 @@ s-del:
 	read -p "Enter the key: " key && \
 	read -p "Enter the value: " value && \
   	docker-compose exec redis redis-cli srem $$key $$value;
+
+# Hash
+
+h-add:
+	read -p "Enter the key: " key && \
+	read -p "Enter the field: " field && \
+	read -p "Enter the value: " value && \
+  	docker-compose exec redis redis-cli hset $$key $$field $$value;
+
+h-read:
+	read -p "Enter the key: " key && \
+  	docker-compose exec redis redis-cli hgetall $$key;
